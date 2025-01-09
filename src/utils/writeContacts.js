@@ -1,5 +1,5 @@
+import { promises as fs } from 'fs';
 import { PATH_DB } from '../constants/contacts.js';
-import { fs } from 'fs';
 
 export const writeContacts = async (updatedContacts) => {
   try {

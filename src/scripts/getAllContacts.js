@@ -1,3 +1,20 @@
-export const getAllContacts = async () => {};
+import { promises as fs } from 'fs';
+import { PATH_DB } from '../constants/contacts.js';
+
+export const getAllContacts = async () => {
+  try {
+    const data = await fs.readFile(PATH_DB, 'utf8');
+
+    const contacts = JSON.parse(data);
+
+    if (!Array.isArray(contacts)) {
+      throw new Error('Contacts data is not an array');
+    }
+
+    return contacts;
+  } catch (error) {
+    console.error('Error reading contacts:', error.message);
+  }
+};
 
 console.log(await getAllContacts());
